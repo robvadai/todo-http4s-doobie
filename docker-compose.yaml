@@ -1,0 +1,21 @@
+---
+version: '3'
+services:
+  postgresql:
+    image: postgres:13.3-alpine
+    hostname: postgresql
+    container_name: postgresql
+    environment:
+      POSTGRES_USER: postgresql
+      POSTGRES_PASSWORD: postgresql
+      POSTGRES_DB: poc
+    ports:
+    - 5432:5432
+    volumes:
+    - ./poc.sql:/docker-entrypoint-initdb.d/poc.sql
+  postgresql-admin:
+    image: adminer
+    hostname: adminer
+    container_name: adminer
+    ports:
+    - 8084:8080
